@@ -38,6 +38,8 @@ import { HalResourceNotificationService } from 'core-app/modules/hal/services/ha
 import { InjectField } from 'core-app/helpers/angular/inject-field.decorator';
 import { PermissionsService } from 'core-app/core/services/permissions/permissions.service';
 import { CreateAutocompleterComponent } from "core-app/modules/autocompleter/create-autocompleter/create-autocompleter.component";
+import { EditFormComponent } from "core-app/modules/fields/edit/edit-form/edit-form.component";
+import { StateService } from "@uirouter/core";
 
 export interface ValueOption {
   name:string;
@@ -52,6 +54,9 @@ export class SelectEditFieldComponent extends EditFieldComponent implements OnIn
   @InjectField() halNotification:HalResourceNotificationService;
   @InjectField() halSorting:HalResourceSortingService;
   @InjectField() permissionsService:PermissionsService;
+  @InjectField() editFormComponent:EditFormComponent;
+  @InjectField() $state:StateService
+
 
   public availableOptions:any[];
   public valueOptions:ValueOption[];
@@ -106,6 +111,7 @@ export class SelectEditFieldComponent extends EditFieldComponent implements OnIn
         });
       });
 
+    this._syncUrlParamsOnChangeIfNeeded(this.handler.fieldName, this.editFormComponent.editMode);
   }
 
   protected initialize() {
@@ -278,5 +284,19 @@ export class SelectEditFieldComponent extends EditFieldComponent implements OnIn
 
   private getEmptyOption():ValueOption|undefined {
     return _.find(this.availableOptions, el => el.name === this.text.placeholder);
+  }
+
+  private _syncUrlParamsOnChangeIfNeeded(fieldName:string, editMode:boolean) {
+    // Work package type changes need to be synced with the type url param
+    // in order to keep the form changes (changeset) between route/state changes
+    if (fieldName === 'type' && editMode) {
+      this.handler.registerOnBeforeSubmit(() => {
+        const newType = this.value?.$source?.id;
+
+        if (newType) {
+          this.$state.go('.', { type: newType }, { notify: false });
+        }
+      });
+    }
   }
 }
