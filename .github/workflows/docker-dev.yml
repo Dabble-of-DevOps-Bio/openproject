@@ -34,10 +34,10 @@ jobs:
         id: build_and_push
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: openproject/community
+          name: "dabbleofdevops/openproject-community"
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          tag_semver: true
+          tags: "dev, latest, ${{env.CALVER}}, ${{env.DOCKER_TAG}}"
       - name: Test
         run: |
           docker run --name openproject -d -p 8080:80 -e SUPERVISORD_LOG_LEVEL=debug -e SECRET_KEY_BASE=secret ${{ steps.build_and_push.outputs.digest }}
