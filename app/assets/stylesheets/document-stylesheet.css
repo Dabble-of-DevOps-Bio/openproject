@@ -1,0 +1,27 @@
+@media print {
+  .toolbar-container {
+    display: none;
+  }
+
+  .files {
+    display: none;
+  }
+
+  body {
+    width: 21cm;
+    height: 29.7cm;
+    margin: 0cm;
+  }
+}
+
+.text-small {
+  font-size: .85em;
+}
+
+.text-big {
+  font-size: 1.4em;
+}
+
+.text-huge {
+  font-size: 1.8em;
+}

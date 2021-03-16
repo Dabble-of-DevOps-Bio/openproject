@@ -323,3 +323,5 @@ gemfiles.each do |file|
 
   eval_gemfile(file)
 end
+
+gem 'tinymce-rails', '~> 4.3', '>= 4.3.13'

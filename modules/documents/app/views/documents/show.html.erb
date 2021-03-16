@@ -29,18 +29,7 @@ See docs/COPYRIGHT.rdoc for more details.
 
 <% html_title h(@document.title) -%>
 
-<style>
-  @media print {
-    .toolbar-container {
-      display: none;
-    }
-    body {
-      width: 21cm;
-      height: 29.7cm;
-      margin: 0cm;
-    }
-  }
-</style>
+<link rel="stylesheet" media="all" href="/assets/document-stylesheet.css">
 
 <%= toolbar title: @document.title,
             subtitle: "#{@document.category.name} - #{format_date @document.created_at}" do %>
@@ -63,8 +52,11 @@ See docs/COPYRIGHT.rdoc for more details.
 <% end %>
 
 <div class="wiki">
-  <%= format_text @document.description, attachments: @document.attachments %>
+  <%= render inline: @document.description %>
 </div>
 
-<%= list_attachments(api_v3_document_resource(@document)) %>
+
+<div class="files">
+  <%= list_attachments(api_v3_document_resource(@document)) %>
+</div>
 
