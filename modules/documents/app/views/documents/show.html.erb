@@ -29,36 +29,72 @@ See docs/COPYRIGHT.rdoc for more details.
 
 <% html_title h(@document.title) -%>
 
-<link rel="stylesheet" media="all" href="/assets/document-print.css">
-<link rel="stylesheet" media="all" href="/assets/document-stylesheet.css">
+<style>
+  @media print {
+    .toolbar-container {
+      display: none;
+    }
+
+    .files {
+      display: none;
+    }
+
+    .note {
+      display: none;
+    }
+
+    .warning-bar--wrapper {
+      display: none;
+    }
+
+    body {
+      width: 21cm;
+      height: 29.7cm;
+      margin: 0cm;
+    }
+  }
+
+  .text-small {
+    font-size: .85em;
+  }
+
+  .text-big {
+    font-size: 1.4em;
+  }
+
+  .text-huge {
+    font-size: 1.8em;
+  }
+</style>
 
 <div class="note">
   <p>To print please press Cmd / Ctrl + P</p>
 </div>
 <%= toolbar title: @document.title,
-            subtitle: "#{@document.category.name} - #{format_date @document.created_at}" do %>
-  <% if authorize_for(:documents, :edit) %>
-    <li class="toolbar-item">
-      <%= link_to({controller: '/documents', action: 'edit', id: @document}, class: 'button', accesskey: accesskey(:edit)) do %>
-        <%= op_icon('button--icon icon-edit') %>
-        <span class="button--text"><%= t(:button_edit) %></span>
-      <% end %>
-    </li>
+subtitle: "#{@document.category.name} - #{format_date @document.created_at}" do %>
+<% if authorize_for(:documents, :edit) %>
+<li class="toolbar-item">
+  <%= link_to({controller: '/documents', action: 'edit', id: @document}, class: 'button', accesskey: accesskey(:edit))
+  do %>
+  <%= op_icon('button--icon icon-edit') %>
+  <span class="button--text"><%= t(:button_edit) %></span>
   <% end %>
-  <% if authorize_for(:documents, :destroy) %>
-    <li class="toolbar-item">
-      <%= link_to({controller: '/documents', action: 'destroy', id: @document}, class: 'button', data: { confirm: t(:text_are_you_sure) }, method: :delete) do %>
-        <%= op_icon('button--icon icon-delete') %>
-        <span class="button--text"><%= t(:button_delete) %></span>
-      <% end %>
-    </li>
+</li>
+<% end %>
+<% if authorize_for(:documents, :destroy) %>
+<li class="toolbar-item">
+  <%= link_to({controller: '/documents', action: 'destroy', id: @document}, class: 'button', data: { confirm:
+  t(:text_are_you_sure) }, method: :delete) do %>
+  <%= op_icon('button--icon icon-delete') %>
+  <span class="button--text"><%= t(:button_delete) %></span>
   <% end %>
+</li>
+<% end %>
 <% end %>
 
 <div class="wiki">
   <%= render inline: @document.description %>
 </div>
-
 
 <div class="files">
   <%= list_attachments(api_v3_document_resource(@document)) %>
