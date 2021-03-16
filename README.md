@@ -16,6 +16,13 @@ OpenProject is a web-based project management software. Its key features are:
 
 More information and screenshots can be found on our [website](https://www.openproject.org).
 
+## Customization
+
+This project is a fork of Openproject v11. For the most part we are staying very close to the original. The changes are:
+
+* Removing all markdown styling and functionality from the documents in order to have more control over the styling of documents. These documents will be used for custom reporting.
+* Using a custom CKEditor5 build found [here](https://github.com/Dabble-of-DevOps-Bio/commonmark-ckeditor-build) with a few additional plugins for font size, font color, page breaks, and HTML embed.  
+
 ## Installation
 
 If you want to run an instance of OpenProject in production (or for evaluation), refer to our
