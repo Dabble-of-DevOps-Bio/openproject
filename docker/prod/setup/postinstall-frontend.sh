@@ -19,6 +19,12 @@ cd /root/openproject/commonmark-ckeditor-build
 npm install
 npm run build
 
+echo "Preparing frontend"
+cd /app/frontend
+npm install --save @tinymce/tinymce-angular tinymce
+npm install
+npm run build
+
 cd  ${APP_PATH}
 RAILS_ENV="production" bundle config unset deployment
 RAILS_ENV="production" bundle exec rake assets:clobber
