@@ -45,7 +45,7 @@ module API
 
         property :title
 
-        formattable_property :description
+        property :description
 
         date_time_property :created_at
         date_time_property :updated_at

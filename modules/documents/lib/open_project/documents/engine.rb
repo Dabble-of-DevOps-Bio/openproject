@@ -82,8 +82,6 @@ module OpenProject::Documents
       require_dependency 'document'
       require_dependency 'document_category'
       require_dependency 'document_category_custom_field'
-
-      require_dependency 'open_project/documents/patches/textile_converter_patch'
     end
   end
 end

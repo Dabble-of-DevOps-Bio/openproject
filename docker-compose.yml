@@ -221,3 +221,16 @@ services:
       # in case we want multiple sessions per container
       NODE_MAX_INSTANCES: "${CI_JOBS:-4}"
       NODE_MAX_SESSION: "${CI_JOBS:-4}"
+
+  ############################################
+  # Adminer to view the databases
+  # Make sure this is on the same network as the database!
+  ############################################
+
+  adminer:
+    image: adminer:4.7.7
+    restart: always
+    ports:
+      - "8081:8080"
+    networks:
+      - network

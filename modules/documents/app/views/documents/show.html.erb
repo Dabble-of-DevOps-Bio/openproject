@@ -28,6 +28,20 @@ See docs/COPYRIGHT.rdoc for more details.
 ++#%>
 
 <% html_title h(@document.title) -%>
+
+<style>
+  @media print {
+    .toolbar-container {
+      display: none;
+    }
+    body {
+      width: 21cm;
+      height: 29.7cm;
+      margin: 0cm;
+    }
+  }
+</style>
+
 <%= toolbar title: @document.title,
             subtitle: "#{@document.category.name} - #{format_date @document.created_at}" do %>
   <% if authorize_for(:documents, :edit) %>
