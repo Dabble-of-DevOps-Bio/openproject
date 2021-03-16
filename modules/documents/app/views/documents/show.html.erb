@@ -31,6 +31,9 @@ See docs/COPYRIGHT.rdoc for more details.
 
 <link rel="stylesheet" media="all" href="/assets/document-stylesheet.css">
 
+<div class="note">
+  <p>To print please press Cmd / Ctrl + P</p>
+</div>
 <%= toolbar title: @document.title,
             subtitle: "#{@document.category.name} - #{format_date @document.created_at}" do %>
   <% if authorize_for(:documents, :edit) %>

@@ -7,6 +7,14 @@
     display: none;
   }
 
+  .note {
+    display: none;
+  }
+
+  .warning-bar--wrapper {
+    display: none;
+  }
+
   body {
     width: 21cm;
     height: 29.7cm;
