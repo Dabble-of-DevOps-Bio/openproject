@@ -15,19 +15,14 @@ cd /root/openproject
 echo "Compiling CKEditor"
 git clone https://github.com/Dabble-of-DevOps-Bio/commonmark-ckeditor-build.git
 
+# Link the correct ckeditor!
 cd /root/openproject/commonmark-ckeditor-build
 npm install
 npm run build
+npm run dist
 
 echo "Preparing frontend"
 cd /app/frontend
-npm install --save @tinymce/tinymce-angular tinymce
 npm install
 npm run build
 
-cd  ${APP_PATH}
-RAILS_ENV="production" bundle config unset deployment
-RAILS_ENV="production" bundle exec rake assets:clobber
-RAILS_ENV="production" bundle exec rake openproject:plugins:register_frontend
-RAILS_ENV="production" bundle exec rake assets:precompile
-RAILS_ENV="production" bundle exec rake assets:environment
