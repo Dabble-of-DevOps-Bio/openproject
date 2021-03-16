@@ -1,4 +1,6 @@
-name: Docker
+name: Docker-Dev-Build
+
+on: [push, pull_request]
 
 env:
   OP_VERSION: "11"
