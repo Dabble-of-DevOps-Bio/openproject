@@ -1,26 +1,4 @@
-@media print {
-  .toolbar-container {
-    display: none;
-  }
-
-  .files {
-    display: none;
-  }
-
-  .note {
-    display: none;
-  }
-
-  .warning-bar--wrapper {
-    display: none;
-  }
-
-  body {
-    width: 21cm;
-    height: 29.7cm;
-    margin: 0cm;
-  }
-}
+/*Specialized styling for the documents*/
 
 .text-small {
   font-size: .85em;
