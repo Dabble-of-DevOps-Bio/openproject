@@ -31,5 +31,5 @@ See docs/COPYRIGHT.rdoc for more details.
 <p class="document-category-elements--date"><em><%= format_time(document.updated_at) %></em></p>
 
 <div class="wiki op-uc-container">
-	<%= format_text(truncate_lines(document.description)) %>
+	<%= render inline: (truncate_lines(document.description)) %>
 </div>
