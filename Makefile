@@ -26,6 +26,7 @@ dev-up:
 	@echo "The server should be up at : http://localhost:3000"
 	@echo "Login with admin, admin"
 
+
 #  frontend:
 #    build:
 #      <<: *frontend-build
@@ -40,6 +41,9 @@ dev-ckeditor:
 
 dev-logs:
 	docker-compose logs -f
+
+dev-stop:
+	docker-compose stop
 
 dev-clean:
 	docker-compose stop; docker-compose rm -f

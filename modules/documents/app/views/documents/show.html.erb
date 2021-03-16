@@ -26,9 +26,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 See docs/COPYRIGHT.rdoc for more details.
 
 ++#%>
-
-<% html_title h(@document.title) -%>
-
 <style>
   @media print {
     .toolbar-container {
@@ -53,7 +50,6 @@ See docs/COPYRIGHT.rdoc for more details.
       margin: 0cm;
     }
   }
-
   .text-small {
     font-size: .85em;
   }
@@ -67,29 +63,24 @@ See docs/COPYRIGHT.rdoc for more details.
   }
 </style>
 
-<div class="note">
-  <p>To print please press Cmd / Ctrl + P</p>
-</div>
 <%= toolbar title: @document.title,
-subtitle: "#{@document.category.name} - #{format_date @document.created_at}" do %>
-<% if authorize_for(:documents, :edit) %>
-<li class="toolbar-item">
-  <%= link_to({controller: '/documents', action: 'edit', id: @document}, class: 'button', accesskey: accesskey(:edit))
-  do %>
-  <%= op_icon('button--icon icon-edit') %>
-  <span class="button--text"><%= t(:button_edit) %></span>
+            subtitle: "#{@document.category.name} - #{format_date @document.created_at}" do %>
+  <% if authorize_for(:documents, :edit) %>
+    <li class="toolbar-item">
+      <%= link_to({controller: '/documents', action: 'edit', id: @document}, class: 'button', accesskey: accesskey(:edit)) do %>
+        <%= op_icon('button--icon icon-edit') %>
+        <span class="button--text"><%= t(:button_edit) %></span>
+      <% end %>
+    </li>
   <% end %>
-</li>
-<% end %>
-<% if authorize_for(:documents, :destroy) %>
-<li class="toolbar-item">
-  <%= link_to({controller: '/documents', action: 'destroy', id: @document}, class: 'button', data: { confirm:
-  t(:text_are_you_sure) }, method: :delete) do %>
-  <%= op_icon('button--icon icon-delete') %>
-  <span class="button--text"><%= t(:button_delete) %></span>
+  <% if authorize_for(:documents, :destroy) %>
+    <li class="toolbar-item">
+      <%= link_to({controller: '/documents', action: 'destroy', id: @document}, class: 'button', data: { confirm: t(:text_are_you_sure) }, method: :delete) do %>
+        <%= op_icon('button--icon icon-delete') %>
+        <span class="button--text"><%= t(:button_delete) %></span>
+      <% end %>
+    </li>
   <% end %>
-</li>
-<% end %>
 <% end %>
 
 <div class="wiki">
@@ -99,4 +90,3 @@ subtitle: "#{@document.category.name} - #{format_date @document.created_at}" do 
 <div class="files">
   <%= list_attachments(api_v3_document_resource(@document)) %>
 </div>
-
