@@ -13,6 +13,7 @@ display_error() {
 echo " ---> Setting up common dependencies. This will take a while..."
 ./docker/prod/setup/preinstall-common.sh > /tmp/dockerize.log || display_error
 
+
 if test -f ./docker/prod/setup/preinstall-$PLATFORM.sh ; then
 	echo " ---> Executing preinstall for $PLATFORM..."
 	./docker/prod/setup/preinstall-$PLATFORM.sh >/tmp/dockerize.log || display_error

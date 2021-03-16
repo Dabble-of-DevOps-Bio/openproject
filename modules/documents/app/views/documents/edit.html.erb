@@ -27,6 +27,8 @@ See docs/COPYRIGHT.rdoc for more details.
 
 ++#%>
 
+<link rel="stylesheet" media="all" href="/assets/document-stylesheet.css">
+
 <%= toolbar title: Document.model_name.human %>
 
 <%= labelled_tabular_form_for @document, url: document_path(@document), method: 'PATCH' do |f| -%>
