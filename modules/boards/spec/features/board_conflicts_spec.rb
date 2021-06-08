@@ -53,7 +53,7 @@ describe 'Board remote changes resolution', type: :feature, js: true do
   let!(:work_package2) { FactoryBot.create :work_package, project: project, subject: 'Work package B', status: open_status }
 
   before do
-    with_enterprise_token :board_view
+    # with_enterprise_token :board_view
     project
     login_as(user1)
   end
